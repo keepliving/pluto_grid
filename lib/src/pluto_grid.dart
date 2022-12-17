@@ -602,7 +602,9 @@ class PlutoGridState extends PlutoStateWithChange<PlutoGrid> {
     }
 
     // 20221211_shortcut 部分快捷键继续抛给上层处理，不要全部屏蔽
-    if (stateManager.mode == PlutoGridMode.readOnly) return KeyEventResult.ignored;
+    if (stateManager.mode == PlutoGridMode.readOnly || stateManager.mode == PlutoGridMode.select) {
+      return KeyEventResult.ignored;
+    }
     return _keyManager.eventResult.consume(KeyEventResult.handled);
   }
 
